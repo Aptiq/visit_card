@@ -1,101 +1,176 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
+import { AppSidebar } from "@/components/app-sidebar"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+import { Separator } from "@/components/ui/separator"
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { ThemeToggle } from "@/components/theme-toggle"
+import { Badge } from "@/components/ui/badge"
+import Link from "next/link"
+import { badgeVariants } from "@/components/ui/badge"
+import { Palette, Rocket } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import { useState, useEffect } from "react"
+import useEmblaCarousel from 'embla-carousel-react'
+import Autoplay from 'embla-carousel-autoplay'
+
+// Ajout d'un tableau d'objets pour les projets
+const projects = [
+  {
+    image: "/images/projet_rolex.gif",
+    title: "Rolex",
+    description: "3D animation"
+  },
+  {
+    image: "/images/projet_karun.gif",
+    title: "Karun",
+    description: "3D for Artist"
+  },
+  {
+    image: "/images/projet_afs.jpg",
+    title: "Swituerland Federal archives",
+    description: "3D twin of Switzerland Federal Archives"
+  },
+  {
+    image: "/images/projet_vrafs.jpg",
+    title: "Switzerland Federal archives",
+    description: "VR Experience for Switzerland Federal Archives"
+  },
+  {
+    image: "/images/projet_tedx.jpg",
+    title: "TedX",
+    description: "Workshop VR & AR"
+  }
+];
+
+export default function Page() {
+  const [isClient, setIsClient] = useState(false)
+  
+  const [emblaRef] = useEmblaCarousel({
+    dragFree: true,
+    containScroll: "trimSnaps",
+    align: "start",
+    slidesToScroll: 1
+  }, [
+    Autoplay({
+      delay: 4000,
+      stopOnInteraction: false
+    })
+  ])
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  if (!isClient) {
+    return null // ou un placeholder
+  }
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <SidebarProvider>
+      <AppSidebar />
+      <SidebarInset>
+        <header className="flex h-16 shrink-0 items-center justify-between transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+          <div className="flex items-center gap-2 px-4">
+            <SidebarTrigger className="-ml-1" />
+          </div>
+          <div className="flex items-center gap-2 px-4">
+            <ThemeToggle />
+          </div>
+        </header>
+        <div className="flex flex-1 flex-col gap-4 p-4 pb-8">
+          <section className="min-h-fit rounded-xl bg-muted/50 p-4 md:p-8 mb-4">
+            <div className="flex flex-col gap-6 md:gap-8">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+                <Avatar className="h-16 w-16">
+                  <AvatarImage src="/images/Avatar.gif" alt="Avatar animé" />
+                  <AvatarFallback>JM</AvatarFallback>
+                </Avatar>
+                <div className="flex flex-col">
+                  <h1 className="text-xl font-bold md:text-2xl">Joey Montani</h1>
+                  <p className="text-muted-foreground">Creative Developer & Designer</p>
+                </div>
+              </div>
+              <div className="space-y-4 md:space-y-6">
+                <p className="text-lg font-bold md:text-xl flex flex-col gap-4">
+                  <span>Hi, I'm Joey 👋</span>
+                  <span>
+                    I create <Badge className="rounded-md font-normal bg-muted text-muted-foreground text-base inline-flex items-center gap-1 font-mono">
+                      <Palette className="h-4 w-4" />digital experiences
+                    </Badge> and 
+                    develop <Badge className="rounded-md font-normal bg-muted text-muted-foreground text-base inline-flex items-center gap-1 font-mono">
+                      <Rocket className="h-4 w-4" />innovative applications
+                    </Badge>
+                  </span>
+                </p>
+              </div>
+            </div>
+          </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          <section className="min-h-fit rounded-xl bg-muted/50 p-4 md:p-8">
+            <div className="flex flex-col gap-6 md:gap-8">
+              <div className="space-y-2 md:space-y-0">
+                <h2 className="text-lg font-bold md:text-xl">Projects</h2>
+                <p className="text-muted-foreground">Discover some of my recent work and experiments.</p>
+              </div>
+              
+              <div className="relative w-full">
+                <Carousel 
+                  className="w-full"
+                  opts={{
+                    dragFree: true,
+                    containScroll: "trimSnaps",
+                    align: "start"
+                  }}
+                >
+                  <CarouselContent className="-ml-2 md:-ml-2">
+                    {projects.map((project, index) => (
+                      <CarouselItem key={index} className="pl-2 md:pl-2 basis-full sm:basis-1/2 lg:basis-1/3">
+                        <div className="p-1">
+                          <Card className="rounded-xl group">
+                            <CardContent className="flex aspect-video items-center justify-center p-0 overflow-hidden rounded-xl relative">
+                              <img 
+                                src={project.image} 
+                                alt={project.title}
+                                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                              />
+                              <div className="absolute inset-0 bg-black/60 p-4 flex flex-col justify-end transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+                                <h3 className="text-white font-bold text-lg transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0">{project.title}</h3>
+                                <p className="text-white/80 text-sm transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0">
+                                  {project.description}
+                                </p>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                </Carousel>
+              </div>
+            </div>
+          </section>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+      </SidebarInset>
+    </SidebarProvider>
+  )
 }
