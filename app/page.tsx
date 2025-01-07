@@ -46,13 +46,28 @@ export default function Page() {
   const [isClient, setIsClient] = useState(false)
   
   const [emblaRef] = useEmblaCarousel({
-    dragFree: true,
-    containScroll: "trimSnaps",
-    align: "start"
+    align: 'start',
+    containScroll: 'trimSnaps',
+    dragFree: false,
+    slidesToScroll: 1,
+    breakpoints: {
+      '(max-width: 640px)': {
+        slidesToScroll: 1,
+        containScroll: 'keepSnaps'
+      },
+      '(min-width: 641px)': {
+        slidesToScroll: 2,
+        containScroll: 'trimSnaps'
+      },
+      '(min-width: 1024px)': {
+        slidesToScroll: 3,
+        containScroll: 'trimSnaps'
+      }
+    }
   }, [
     Autoplay({
       delay: 4000,
-      stopOnInteraction: false
+      stopOnInteraction: true
     })
   ])
 
@@ -68,20 +83,28 @@ export default function Page() {
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center justify-between transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
-          <div className="flex items-center gap-2 px-4">
+        <header className="flex h-12 shrink-0 items-center justify-between px-8 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+          <div className="flex items-center gap-2">
             <SidebarTrigger className="-ml-1" />
           </div>
-          <div className="flex items-center gap-2 px-4">
+          <div className="flex items-center gap-2">
             <ThemeToggle />
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pb-8">
-          <section className="min-h-fit rounded-xl bg-muted/50 p-4 md:p-8 mb-4">
-            <div className="flex flex-col gap-6 md:gap-8">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+        <div className="flex flex-1 flex-col gap-8 px-8 py-4">
+          <section className="min-h-fit rounded-xl bg-muted/50 p-8">
+            <div className="flex flex-col gap-8">
+              <div className="flex flex-col gap-8 sm:flex-row sm:items-center">
                 <Avatar className="h-16 w-16">
-                  <AvatarImage src="/images/Avatar.gif" alt="Avatar animé" />
+                  <div className="relative w-full h-full">
+                    <Image 
+                      src="/images/Avatar.gif"
+                      alt="Avatar animé"
+                      fill
+                      priority
+                      className="object-cover"
+                    />
+                  </div>
                   <AvatarFallback>JM</AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col">
@@ -89,7 +112,7 @@ export default function Page() {
                   <p className="text-muted-foreground">Creative Developer & Designer</p>
                 </div>
               </div>
-              <div className="space-y-4 md:space-y-6">
+              <div className="space-y-8">
                 <p className="text-lg font-bold md:text-xl flex flex-col gap-4">
                   <span>Hi, I&apos;m Joey 👋</span>
                   <span>
@@ -105,9 +128,9 @@ export default function Page() {
             </div>
           </section>
 
-          <section className="min-h-fit rounded-xl bg-muted/50 p-4 md:p-8">
-            <div className="flex flex-col gap-6 md:gap-8">
-              <div className="space-y-2 md:space-y-0">
+          <section className="min-h-fit rounded-xl bg-muted/50 p-8">
+            <div className="flex flex-col gap-8">
+              <div className="space-y-4">
                 <h2 className="text-lg font-bold md:text-xl">Projects</h2>
                 <p className="text-muted-foreground">Discover some of my recent work and experiments.</p>
               </div>
@@ -117,9 +140,10 @@ export default function Page() {
                   ref={emblaRef}
                   className="w-full"
                   opts={{
-                    dragFree: true,
-                    containScroll: "trimSnaps",
-                    align: "start"
+                    align: 'start',
+                    containScroll: 'trimSnaps',
+                    dragFree: false,
+                    slidesToScroll: 1
                   }}
                 >
                   <CarouselContent className="-ml-2 md:-ml-2">
@@ -132,10 +156,13 @@ export default function Page() {
                                 src={project.image} 
                                 alt={project.title}
                                 fill
+                                priority={index === 0}
                                 className="object-cover transition-transform duration-300 group-hover:scale-110"
                               />
                               <div className="absolute inset-0 bg-black/60 p-4 flex flex-col justify-end transition-opacity duration-300 opacity-0 group-hover:opacity-100">
-                                <h3 className="text-white font-bold text-lg transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0">{project.title}</h3>
+                                <h3 className="text-white font-bold text-lg transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0">
+                                  {project.title}
+                                </h3>
                                 <p className="text-white/80 text-sm transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0">
                                   {project.description}
                                 </p>
@@ -151,6 +178,10 @@ export default function Page() {
             </div>
           </section>
         </div>
+
+        <footer className="flex h-12 shrink-0 items-center justify-between px-8">
+          <p className="text-sm text-muted-foreground">© 2024 Joey Montani</p>
+        </footer>
       </SidebarInset>
     </SidebarProvider>
   )
