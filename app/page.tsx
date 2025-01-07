@@ -1,37 +1,17 @@
 "use client"
 
 import { AppSidebar } from "@/components/app-sidebar"
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar"
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Badge } from "@/components/ui/badge"
-import Link from "next/link"
-import { badgeVariants } from "@/components/ui/badge"
 import { Palette, Rocket } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 import { useState, useEffect } from "react"
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
+import Image from 'next/image'
 
 // Ajout d'un tableau d'objets pour les projets
 const projects = [
@@ -68,8 +48,7 @@ export default function Page() {
   const [emblaRef] = useEmblaCarousel({
     dragFree: true,
     containScroll: "trimSnaps",
-    align: "start",
-    slidesToScroll: 1
+    align: "start"
   }, [
     Autoplay({
       delay: 4000,
@@ -112,7 +91,7 @@ export default function Page() {
               </div>
               <div className="space-y-4 md:space-y-6">
                 <p className="text-lg font-bold md:text-xl flex flex-col gap-4">
-                  <span>Hi, I'm Joey 👋</span>
+                  <span>Hi, I&apos;m Joey 👋</span>
                   <span>
                     I create <Badge className="rounded-md font-normal bg-muted text-muted-foreground text-base inline-flex items-center gap-1 font-mono">
                       <Palette className="h-4 w-4" />digital experiences
@@ -135,6 +114,7 @@ export default function Page() {
               
               <div className="relative w-full">
                 <Carousel 
+                  ref={emblaRef}
                   className="w-full"
                   opts={{
                     dragFree: true,
@@ -148,10 +128,11 @@ export default function Page() {
                         <div className="p-1">
                           <Card className="rounded-xl group">
                             <CardContent className="flex aspect-video items-center justify-center p-0 overflow-hidden rounded-xl relative">
-                              <img 
+                              <Image 
                                 src={project.image} 
                                 alt={project.title}
-                                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                                fill
+                                className="object-cover transition-transform duration-300 group-hover:scale-110"
                               />
                               <div className="absolute inset-0 bg-black/60 p-4 flex flex-col justify-end transition-opacity duration-300 opacity-0 group-hover:opacity-100">
                                 <h3 className="text-white font-bold text-lg transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0">{project.title}</h3>
