@@ -78,10 +78,10 @@ export default function Page() {
                     <Image 
                       src="/images/avatar.gif"
                       alt="Avatar animé"
-                      fill
+                      width={64}
+                      height={64}
                       unoptimized
-                      sizes="(max-width: 64px) 100vw, 64px"
-                      className="object-cover"
+                      className="object-cover w-full h-full"
                       priority
                     />
                   </div>
