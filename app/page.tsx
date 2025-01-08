@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react"
 import { AppSidebar } from "@/components/app-sidebar"
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Avatar } from "@/components/ui/avatar"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Badge } from "@/components/ui/badge"
 import { Palette, Rocket, ChevronLeft, ChevronRight } from "lucide-react"
@@ -74,16 +74,16 @@ export default function Page() {
             <div className="flex flex-col gap-4 md:gap-8">
               <div className="flex flex-col gap-2 md:gap-3 sm:flex-row sm:items-center">
                 <Avatar className="h-16 w-16">
-                  <div className="relative w-full h-full">
+                  <div className="relative w-full h-full rounded-full overflow-hidden">
                     <Image 
                       src="/images/avatar.gif"
                       alt="Avatar animé"
                       fill
-                      priority
+                      sizes="(max-width: 64px) 100vw, 64px"
                       className="object-cover"
+                      priority
                     />
                   </div>
-                  <AvatarFallback>JM</AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col gap-0.5 md:gap-1">
                   <h1 className="text-2xl md:text-2xl font-bold">Joey Montani</h1>
