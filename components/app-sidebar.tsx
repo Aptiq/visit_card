@@ -12,6 +12,7 @@ import {
   PieChart,
   SquareTerminal,
 } from "lucide-react"
+import Image from "next/image"
 
 import { NavMain } from "@/components/nav-main"
 import { NavProjects } from "@/components/nav-projects"
@@ -32,29 +33,12 @@ const data = {
     email: "joey.montani@aptiq.ch",
     avatar: "/images/Avatar.png",
   },
-  teams: [
-    {
-      name: "Aptiq",
-      logo: GalleryVerticalEnd,
-      plan: "Design3D",
-    },
-    {
-      name: "Weblaw",
-      logo: AudioWaveform,
-      plan: "LegalTech",
-    },
-    {
-      name: "Joenvyme",
-      logo: Command,
-      plan: "Dev",
-    },
-  ],
   navMain: [
     {
       title: "Dev",
       url: "#",
       icon: SquareTerminal,
-      isActive: true,
+      isActive: false,
       items: [
         {
           title: "VR, AR, Games",
@@ -117,34 +101,18 @@ const data = {
       ],
     },
   ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-    },
-  ],
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <div className="flex h-14 items-center px-4">
+          <span className="font-semibold">Hello !</span>
+        </div>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
