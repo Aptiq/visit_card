@@ -2,22 +2,13 @@
 
 import * as React from "react"
 import {
-  AudioWaveform,
-  BookOpen,
   Bot,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  Map,
-  PieChart,
+  BookOpen,
   SquareTerminal,
 } from "lucide-react"
-import Image from "next/image"
 
 import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
 import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
 import {
   Sidebar,
   SidebarContent,
@@ -31,7 +22,7 @@ const data = {
   user: {
     name: "Joey Montani",
     email: "joey.montani@aptiq.ch",
-    avatar: "/images/Avatar.png",
+    avatar: "/images/avatar.png",
   },
   navMain: [
     {

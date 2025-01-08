@@ -16,7 +16,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import Image from 'next/image'
-import { cn } from "@/lib/utils"
 
 // Ajout d'un tableau d'objets pour les projets
 const projects = [
@@ -77,7 +76,7 @@ export default function Page() {
                 <Avatar className="h-16 w-16">
                   <div className="relative w-full h-full">
                     <Image 
-                      src="/images/Avatar.gif"
+                      src="/images/avatar.gif"
                       alt="Avatar animé"
                       fill
                       priority
