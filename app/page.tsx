@@ -77,10 +77,10 @@ export default function Page() {
                   <div className="relative w-full h-full rounded-full overflow-hidden">
                     <Image 
                       src="/images/avatar.gif"
-                      alt="Avatar animé"
+                      alt="JM"
                       width={64}
                       height={64}
-                      unoptimized
+                      unoptimized={true}
                       className="object-cover w-full h-full"
                       priority
                     />
