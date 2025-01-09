@@ -88,19 +88,19 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const [isCollapsed, setIsCollapsed] = React.useState(false)
+  const [collapsed, setCollapsed] = React.useState(false)
 
   return (
     <Sidebar 
       collapsible="icon" 
-      isCollapsed={isCollapsed}
-      onCollapsedChange={setIsCollapsed}
+      collapsed={collapsed}
+      onCollapsedChange={setCollapsed}
       {...props}
     >
       <SidebarHeader>
         <div className="flex h-14 items-center px-4">
           <span className="font-semibold transition-all">
-            {isCollapsed ? "H" : "Hello !"}
+            {collapsed ? "H" : "Hello !"}
           </span>
         </div>
       </SidebarHeader>
