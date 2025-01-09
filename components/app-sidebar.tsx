@@ -13,6 +13,7 @@ import {
   SidebarContent,
   SidebarHeader,
   SidebarRail,
+  useSidebar,
 } from "@/components/ui/sidebar"
 
 // Skills
@@ -87,20 +88,16 @@ const data = {
   ],
 }
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const [open, setOpen] = React.useState(false)
-
+export function AppSidebar({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <Sidebar 
-      collapsible="icon"
-      defaultOpen={!open}
-      onOpenChange={setOpen}
+      className={className}
       {...props}
     >
       <SidebarHeader>
         <div className="flex h-14 items-center px-4">
           <span className="font-semibold transition-all">
-            {open ? "H" : "Hello !"}
+            Hello !
           </span>
         </div>
       </SidebarHeader>
