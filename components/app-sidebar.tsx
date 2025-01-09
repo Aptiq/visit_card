@@ -13,7 +13,6 @@ import {
   SidebarContent,
   SidebarHeader,
   SidebarRail,
-  useSidebar,
 } from "@/components/ui/sidebar"
 
 // Skills
