@@ -16,6 +16,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import Image from 'next/image'
+import { RunnerGame } from "@/components/RunnerGame"
 
 // Ajout d'un tableau d'objets pour les projets
 const projects = [
@@ -76,7 +77,7 @@ export default function Page() {
                 <Avatar className="h-16 w-16">
                   <div className="relative w-full h-full rounded-full overflow-hidden">
                     <Image 
-                      src="/images/avatar.gif"
+                      src="/images/avatar.png"
                       alt="JM"
                       width={64}
                       height={64}
@@ -164,6 +165,18 @@ export default function Page() {
                   </div>
                 </Carousel>
               </div>
+            </div>
+          </section>
+
+          <section className="min-h-fit rounded-xl bg-muted/50 p-4 md:p-8">
+            <div className="flex flex-col gap-4 md:gap-8">
+              <div className="space-y-1 md:space-y-2">
+                <h2 className="text-xl md:text-xl font-bold">Mini Game</h2>
+                <p className="text-sm md:text-base text-muted-foreground">
+                  Press space or tap to jump!
+                </p>
+              </div>
+              <RunnerGame />
             </div>
           </section>
         </div>

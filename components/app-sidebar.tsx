@@ -8,22 +8,15 @@ import {
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
-import { NavUser } from "@/components/nav-user"
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
 
-// This is sample data.
+// Skills
 const data = {
-  user: {
-    name: "Joey Montani",
-    email: "joey.montani@aptiq.ch",
-    avatar: "/images/avatar.png",
-  },
   navMain: [
     {
       title: "Dev",
@@ -95,19 +88,25 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const [isCollapsed, setIsCollapsed] = React.useState(false)
+
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar 
+      collapsible="icon" 
+      collapsed={isCollapsed}
+      onCollapsedChange={setIsCollapsed}
+      {...props}
+    >
       <SidebarHeader>
         <div className="flex h-14 items-center px-4">
-          <span className="font-semibold">Hello !</span>
+          <span className="font-semibold transition-all">
+            {isCollapsed ? "H" : "Hello !"}
+          </span>
         </div>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   )
