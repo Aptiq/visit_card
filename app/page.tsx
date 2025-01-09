@@ -116,14 +116,13 @@ export default function Page() {
                   <Avatar className="h-16 w-16 shrink-0">
                     <div className="relative w-full h-full rounded-full overflow-hidden">
                       <Image 
-                        src="/images/avatar.png"
+                        src="/images/avatar.GIF"
                         alt="Avatar animé"
-                        width={64}
-                        height={64}
-                        unoptimized={true}
+                        fill
+                        sizes="(max-width: 64px) 100vw, 64px"
                         className="object-cover"
                         priority
-                        style={{ width: '100%', height: '100%' }}
+                        unoptimized={true}
                       />
                     </div>
                   </Avatar>
