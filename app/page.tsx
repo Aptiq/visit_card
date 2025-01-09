@@ -121,8 +121,9 @@ export default function Page() {
                         width={64}
                         height={64}
                         unoptimized={true}
-                        className="object-cover w-full h-full"
+                        className="object-cover"
                         priority
+                        style={{ width: '100%', height: '100%' }}
                       />
                     </div>
                   </Avatar>
