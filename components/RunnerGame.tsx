@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useCallback } from 'react'
 
 export const RunnerGame = () => {
   const [gameOver, setGameOver] = useState(false)
@@ -12,12 +12,12 @@ export const RunnerGame = () => {
   const [isPlaying, setIsPlaying] = useState(false)
   const [speed, setSpeed] = useState(2)
 
-  const jump = () => {
+  const jump = useCallback(() => {
     if (!isJumping && !gameOver && isPlaying) {
       setIsJumping(true)
       setTimeout(() => setIsJumping(false), 500)
     }
-  }
+  }, [isJumping, gameOver, isPlaying])
 
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
@@ -29,7 +29,7 @@ export const RunnerGame = () => {
 
     document.addEventListener('keydown', handleKeyPress)
     return () => document.removeEventListener('keydown', handleKeyPress)
-  }, [isPlaying])
+  }, [jump])
 
   useEffect(() => {
     if (isPlaying && !gameOver) {
