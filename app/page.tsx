@@ -136,7 +136,7 @@ export default function Page() {
                 
                 <div className="text-base md:text-base text-muted-foreground flex flex-col gap-2 md:gap-3">
                   <p className="flex flex-wrap gap-2 items-center">
-                    Hi, I'm Joey, I create <Badge className="rounded-md font-normal bg-muted text-muted-foreground text-base inline-flex items-center gap-1 font-mono">
+                    Hi, I&apos;m Joey, I create <Badge className="rounded-md font-normal bg-muted text-muted-foreground text-base inline-flex items-center gap-1 font-mono">
                       <Palette className="h-3 w-3" />digital experiences
                     </Badge> and develop <Badge className="rounded-md font-normal bg-muted text-muted-foreground text-base inline-flex items-center gap-1 font-mono">
                       <Rocket className="h-3 w-3" />innovative applications
