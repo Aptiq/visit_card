@@ -6,7 +6,7 @@ import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/s
 import { Avatar } from "@/components/ui/avatar"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Badge } from "@/components/ui/badge"
-import { Palette, Rocket, Play, Square, Info } from "lucide-react"
+import { Palette, Rocket, Play, Square, Info, Github, Instagram, Linkedin, Globe } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import {
   Carousel,
@@ -135,13 +135,56 @@ export default function Page() {
                 <div className="h-px bg-border/40" />
                 
                 <div className="text-base md:text-base text-muted-foreground flex flex-col gap-2 md:gap-3">
+                  <p>Hi, I&apos;m Joey👋</p>
                   <p className="flex flex-wrap gap-2 items-center">
-                    Hi, I&apos;m Joey, I create <Badge className="rounded-md font-normal bg-muted text-muted-foreground text-base inline-flex items-center gap-1 font-mono">
-                      <Palette className="h-3 w-3" />digital experiences
+                    I create <Badge className="rounded-md font-normal bg-muted text-muted-foreground text-base inline-flex items-center gap-1 font-mono">
+                      <Palette className="h-4 w-4" />digital experiences
                     </Badge> and develop <Badge className="rounded-md font-normal bg-muted text-muted-foreground text-base inline-flex items-center gap-1 font-mono">
-                      <Rocket className="h-3 w-3" />innovative applications
+                      <Rocket className="h-4 w-4" />innovative applications
                     </Badge>
                   </p>
+                  
+                  <div className="flex gap-4 pt-2">
+                    <Link
+                      href="https://github.com/Aptiq"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      <Github className="h-5 w-5" />
+                      <span className="sr-only">GitHub</span>
+                    </Link>
+                    
+                    <Link
+                      href="https://www.instagram.com/joenvyme/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      <Instagram className="h-5 w-5" />
+                      <span className="sr-only">Instagram</span>
+                    </Link>
+                    
+                    <Link
+                      href="https://www.linkedin.com/in/joeymontani/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      <Linkedin className="h-5 w-5" />
+                      <span className="sr-only">LinkedIn</span>
+                    </Link>
+                    
+                    <Link
+                      href="https://aptiq.ch/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      <Globe className="h-5 w-5" />
+                      <span className="sr-only">Site Web</span>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
